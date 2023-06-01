@@ -1,5 +1,5 @@
 <tr>
-  <td><%= email.object %></td>
-  <td><%= email.body %></td>
+  <td><%= link_to email.object, email_path(email), data: {turbo_frame: "read_email"}, :method=>:show %></td>
+  <td><%= link_to email.status, data: {turbo_frame: "read_email"} %></td>
   <td><%= button_to "supprimer", email_path(email), method: :delete, data: {turbo_frame: "delete_email"} %></td>
 <tr>

@@ -24,3 +24,15 @@ th, td {
   padding: 8px; /* Ajouter un espace interne de 8 pixels */
   text-align: left;
 }
+
+.container{
+  display: flex;
+}
+
+.size-t{
+  width: 500px;
+}
+
+.left{
+  margin-left: 20px;
+}

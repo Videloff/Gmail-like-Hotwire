@@ -2,24 +2,32 @@
 
 <%= button_to "recevoir un email", emails_path, data: { turbo_frame: "new_email" } %>
 <br>
-<%= @emails.count %>
-<%= turbo_frame_tag "new_email" do %>
-  <table>
-    <tr>
-      <td>
-        <table>
-          <tr>
-            <td>Object</td>
-            <td>Body</td>
-            <td>Option</td>
-          </tr>
-          <% @emails.each do |email| %>
-            <%= render 'email', email: email %>
-          <% end %>
-        </table>
-      </td>
-    </tr>
-  </table>
-<% end %>
 
 </center>
+
+<div class="container">
+  <div class="size-t">
+    <%= turbo_frame_tag "new_email" do %>
+      <table>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td>Object</td>
+                <td>Deja lu ?</td>
+                <td>Option</td>
+              </tr>
+              <% @emails.sort.each do |email| %>
+                <%= render 'email', email: email %>
+              <% end %>
+            </table>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <div class="left">
+    <%= turbo_frame_tag "read_email" do %>
+    <% end %>
+  </div>
+</div>

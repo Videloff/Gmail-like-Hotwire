@@ -5,12 +5,8 @@ class EmailsController < ApplicationController
   end
 
   def create
-    @email = Email.create!(object: Faker::Fantasy::Tolkien.poem, body: Faker::Games::WarhammerFantasy.quote)
-    respond_to do |format|
-      format.html do
-        redirect_to emails_path
-      end
-    end
+    @email = Email.create!(object: Faker::Fantasy::Tolkien.poem, body: Faker::Games::WarhammerFantasy.quote, already_readed: false, status: "non lu")
+    redirect_to emails_path
   end
 
   def destroy
@@ -19,6 +15,14 @@ class EmailsController < ApplicationController
     @email.destroy
 
     redirect_to emails_path
+  end
+
+  def show
+    @emails = Email.all
+    @email = @emails.find_by(id: params[:id])
+    if @email.already_readed == false
+      @email.update(already_readed: true, status: "lu")
+    end
   end
 
 end
